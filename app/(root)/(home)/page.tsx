@@ -1,9 +1,41 @@
 import HomeFilters from "@/components/home/HomeFilters";
+import NoResult from "@/components/shared/NoResult";
+import QuestionCard from "@/components/shared/cards/QuestionCard";
 import RenderFilter from "@/components/shared/filter/RenderFilter";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import Link from "next/link";
+
+const questions = [
+  {
+    _id: "1",
+    title:
+      "The Lightning Component c:LWC_PizzaTracker generated invalid output for field status. Error How to solve this",
+    tags: [
+      { _id: "1", name: "python" },
+      { _id: "2", name: "sql" },
+    ],
+    author: { _id: "1", name: "John Doe", picture: "john-doe.jpg" },
+    upvotes: 10,
+    views: 1000000,
+    answers: [],
+    createdAt: new Date("2023-09-01T12:00:00.000Z"),
+  },
+  {
+    _id: "2",
+    title: "How to center a div",
+    tags: [
+      { _id: "1", name: "css" },
+      { _id: "2", name: "tailwindcss" },
+    ],
+    author: { _id: "2", name: "Marie Joe", picture: "marie-joe.jpg" },
+    upvotes: 10,
+    views: 100,
+    answers: [],
+    createdAt: new Date("2021-09-01T12:00:00.000Z"),
+  },
+];
 
 export default function Home() {
   return (
@@ -33,6 +65,33 @@ export default function Home() {
         />
       </div>
       <HomeFilters />
+
+      <div className="mt-10 flex w-full flex-col gap-6">
+        {questions.length > 0 ? (
+          questions.map((question) => (
+            <QuestionCard
+              key={question._id}
+              _id={question._id}
+              title={question.title}
+              tags={question.tags}
+              author={question.author}
+              upvotes={question.upvotes}
+              views={question.views}
+              answers={question.answers}
+              createdAt={question.createdAt}
+            />
+          ))
+        ) : (
+          <NoResult
+            title="There's no questions to show"
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the
+          discussion. our query could be the next big thing others learn from. Get
+          involved! 💡"
+            link="/ask-question"
+            linkTitle="Ask a Question"
+          />
+        )}
+      </div>
     </>
   );
 }
