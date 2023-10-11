@@ -19,6 +19,7 @@ import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createQuestion } from "@/lib/actions/question.action";
 
 const type = "edit";
 
@@ -36,11 +37,13 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: questionsSchemaType) {
+  async function onSubmit(values: questionsSchemaType) {
     setIsSubmitting(true);
     try {
       // make an async call to our api to create a question
       // navigate to home
+
+      await createQuestion({});
     } catch (error) {
     } finally {
       setIsSubmitting(false);
@@ -122,6 +125,8 @@ const Question = () => {
               </FormLabel>
               <FormControl className="mt-3.5">
                 <Editor
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
                   onInit={(evt, editor) =>
                     // @ts-ignore
@@ -158,7 +163,7 @@ const Question = () => {
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
                 Introduce the problem and expand on what you put in the title.
-                Minimum 20 characters.
+                Minimum 100 characters.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
