@@ -34,7 +34,6 @@ const LocalSearch = ({
       )}
       <Input
         placeholder={placeholder}
-        value={""}
         onChange={() => {}}
         className="paragraph-regular no-focus background-light800_darkgradient border-none shadow-none outline-none"
       />
