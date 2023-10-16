@@ -23,6 +23,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "/assets/images/site-logo.svg",
   },
+  authors: [
+    {
+      name: "Gustavo Antônio Cimarosti Garcia",
+      url: "https://github.com/gustavogarciac",
+    },
+  ],
 };
 
 export default function RootLayout({
