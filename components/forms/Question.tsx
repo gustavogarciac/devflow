@@ -59,7 +59,6 @@ const Question = ({ mongoUserId }: Props) => {
     } finally {
       setIsSubmitting(false);
     }
-    console.log(values);
   }
 
   function handleInputKeyDown(
