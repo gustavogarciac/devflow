@@ -1,6 +1,5 @@
 import Navbar from "@/components/shared/navbar/Navbar";
 import LeftSidebar from "@/components/shared/sidebar/LeftSidebar";
-// import RSidebar from "@/components/shared/sidebar/RSidebar";
 import RightSidebar from "@/components/shared/sidebar/RightSidebar";
 import React from "react";
 
@@ -14,7 +13,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="mx-auto w-full max-w-5xl">{children}</div>
         </section>
         <RightSidebar />
-        {/* <RSidebar /> */}
       </div>
       Toaster
     </main>
