@@ -30,5 +30,19 @@ const UserSchema = new Schema({
   joinedDate: { type: Date, default: Date.now },
 });
 
+export interface UserProps {
+  clerkId: string;
+  name: string;
+  username: string;
+  email: string;
+  password?: string;
+  bio?: string;
+  picture: string;
+  location?: string;
+  portfolioWebsite?: string;
+  reputation?: number;
+  joinedDate: Date;
+}
+
 const User = models.User || model("User", UserSchema);
 export default User;
