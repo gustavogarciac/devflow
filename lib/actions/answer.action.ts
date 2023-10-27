@@ -1,7 +1,7 @@
 "use server";
 
 import Answer from "@/database/answer.model";
-import { connectToDabatase } from "../mongoose";
+import { connectToDatabase } from "../mongoose";
 import {
   AnswerVoteParams,
   CreateAnswerParams,
@@ -12,7 +12,7 @@ import Question from "@/database/question.model";
 
 export async function createAnswer(params: CreateAnswerParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const { author, content, path, question } = params;
 
@@ -37,7 +37,7 @@ export async function createAnswer(params: CreateAnswerParams) {
 
 export async function getAnswers(params: GetAnswersParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const { questionId } = params;
 
@@ -54,7 +54,7 @@ export async function getAnswers(params: GetAnswersParams) {
 
 export async function upvoteAnswer(params: AnswerVoteParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const { userId, hasupVoted, hasdownVoted, path, answerId } = params;
 
@@ -89,7 +89,7 @@ export async function upvoteAnswer(params: AnswerVoteParams) {
 
 export async function downvoteAnswer(params: AnswerVoteParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const { userId, hasupVoted, hasdownVoted, path, answerId } = params;
 

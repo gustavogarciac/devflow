@@ -1,7 +1,7 @@
 "use server";
 
 import Question from "@/database/question.model";
-import { connectToDabatase } from "../mongoose";
+import { connectToDatabase } from "../mongoose";
 import Tag from "@/database/tag.model";
 import {
   CreateQuestionParams,
@@ -14,7 +14,7 @@ import { revalidatePath } from "next/cache";
 
 export async function createQuestion(params: CreateQuestionParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const { title, content, tags, author, path } = params;
 
@@ -48,7 +48,7 @@ export async function createQuestion(params: CreateQuestionParams) {
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const questions = await Question.find({})
       .populate({
@@ -70,7 +70,7 @@ export async function getQuestions(params: GetQuestionsParams) {
 
 export async function getQuestionById(params: GetQuestionByIdParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
     const { questionId } = params;
 
     const question = await Question.findById(questionId)
@@ -94,7 +94,7 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
 
 export async function upvoteQuestion(params: QuestionVoteParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const { userId, hasupVoted, hasdownVoted, path, questionId } = params;
 
@@ -129,7 +129,7 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
 
 export async function downvoteQuestion(params: QuestionVoteParams) {
   try {
-    connectToDabatase();
+    connectToDatabase();
 
     const { userId, hasupVoted, hasdownVoted, path, questionId } = params;
 
