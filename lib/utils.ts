@@ -43,3 +43,14 @@ export const formatNumberWithExtension = (number: number): string => {
     return number.toString();
   }
 };
+
+export function getJoinedDate(date: Date): string {
+  if (!(date instanceof Date)) {
+    throw new Error("Input is not a valid Date object");
+  }
+
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
+
+  return `${month} ${year}`;
+}

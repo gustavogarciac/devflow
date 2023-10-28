@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
-import { SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignOutButton, SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import { LogOut, User, UserCog } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import React from "react";
 
 const LeftSidebar = () => {
   const pathname = usePathname();
+  const { userId } = useAuth();
 
   return (
     <aside className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
@@ -20,6 +21,14 @@ const LeftSidebar = () => {
             const isActive =
               (pathname.includes(item.route) && item.route.length > 1) ||
               pathname === item.route;
+
+            if (item.route === "/profile") {
+              if (userId) {
+                item.route = `${item.route}/${userId}`;
+              } else {
+                item.route = "sign-in";
+              }
+            }
             return (
               <Link
                 href={item.route}
